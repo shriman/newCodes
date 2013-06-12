@@ -40,8 +40,7 @@ nodePosForPlot(:,:,1) = nodePosition;
 for t = 1:1:T
     t
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%use the part below while using either the benefit by dist method or max no
-%of nodes hearing method
+%use 
     if(t == 1)
         nodePositionNew = newNodePosition(nodePosition,V_max);
         [ERLeft,ERRight] = estimativeRegion(nodePositionNew,V_max);
