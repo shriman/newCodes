@@ -1,4 +1,4 @@
-function [ seedPosNew ] = scan( seedPosOld,seedPosPrev,V_max,r,net )
+function [ seedPosNew ] = scan( seedPosOld,dir1,dir0,V_max,r,net )
 %UNTITLED5 Summary of this function goes here
 %   Detailed explanation goes here
 row = size(seedPosOld,1); % now we have found the no of nodes
@@ -8,7 +8,8 @@ for i = 1:1:row
     y1 = seedPosOld(i,2);
     x0 = seedPosPrev(i,1);
     y0 = seedPosPrev(i,2);
-    
+    dir0
+    dir1
     %
     if(x0 == x1)
         if((y1 - y0) > 0)

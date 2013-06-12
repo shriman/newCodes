@@ -107,8 +107,7 @@ hold on;
 % 
 % [x5,y5] = plotData(nodePosForPlot,5);
 % plot(x5,y5);
-% figure; plot(seedPosForPlot(1,1,:),seedPosForPlot(1,2,:));
-% figure; plot(nodePosForPlot(1,1,:),seedPosForPlot(1,2,:));
+
 
 
 
