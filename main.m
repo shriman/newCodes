@@ -37,6 +37,8 @@ seedPosForPlot = zeros(noOfSeeds,2,T+1);
 nodePosForPlot = zeros(noOfNodes,2,T); 
 seedPosForPlot(:,:,1) = seedPosition;
 nodePosForPlot(:,:,1) = nodePosition;
+err_x = zeros(noOfNodes,T);
+err_y = zeros(noOfNodes,T);
 for t = 1:1:T
     t
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -53,7 +55,7 @@ for t = 1:1:T
         [ERLeft,ERRight] = estimativeRegion(nodePositionNew,V_max);
         seedPositionNew = seedPosNew;
     end
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %%use this when using the for max no of nodes listening 
 %     seedPosNew = maxNoOfNodesHearing(seedPositionNew,nodePositionNew,V_max,r,threshold);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -61,9 +63,9 @@ for t = 1:1:T
 %uncomment the belo two lines when using the benefitbyDist algo or only the
 %benefit algo
 
-%     [benefitGrid,seedPosX,seedPosY] = benefitGridCalculation(seedPositionNew,nodePositionNew,V_max,r);
-% 
-%     seedPosNew = nextSeedPosition(benefitGrid,seedPositionNew,seedPosX,seedPosY,noOfSeeds,threshold);
+    [benefitGrid,seedPosX,seedPosY] = benefitGridCalculation(seedPositionNew,nodePositionNew,V_max,r);
+
+    seedPosNew = nextSeedPosition(benefitGrid,seedPositionNew,seedPosX,seedPosY,noOfSeeds,threshold);
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -93,7 +95,7 @@ for t = 1:1:T
         [ERnewLeft,ERnewRight] = newEstimativeRegion(ERnewLeft,ERnewRight,seedPosNew(i,:),r);
     end
     nodePosEstmtd = nodeLocalization(ERnewLeft,ERnewRight);
-    error(t) = nodeEstimationError(nodePositionNew,nodePosEstmtd);
+    [error(t),err_x(:,t),err_y(:,t)] = nodeEstimationError(nodePositionNew,nodePosEstmtd);
     seedPosForPlot(:,:,t+1) = seedPosNew;
     nodePosForPlot(:,:,t+1) = nodePositionNew;
 end
@@ -114,20 +116,20 @@ hold on;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %uncommet the code below  to plot the path for the first five nodes
-[x1,y1] = plotData(nodePosForPlot,1);
-plot(x1,y1);
-
-[x2,y2] = plotData(nodePosForPlot,2);
-plot(x2,y2);
-
-[x3,y3] = plotData(nodePosForPlot,3);
-plot(x3,y3);
-
-[x4,y4] = plotData(nodePosForPlot,4);
-plot(x4,y4);
-
-[x5,y5] = plotData(nodePosForPlot,5);
-plot(x5,y5);
+% [x1,y1] = plotData(nodePosForPlot,1);
+% plot(x1,y1);
+% 
+% [x2,y2] = plotData(nodePosForPlot,2);
+% plot(x2,y2);
+% 
+% [x3,y3] = plotData(nodePosForPlot,3);
+% plot(x3,y3);
+% 
+% [x4,y4] = plotData(nodePosForPlot,4);
+% plot(x4,y4);
+% 
+% [x5,y5] = plotData(nodePosForPlot,5);
+% plot(x5,y5);
 
 
 

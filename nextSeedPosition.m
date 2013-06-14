@@ -1,4 +1,4 @@
-function [ seedPositionNew ] = nextSeedPosition( benefitGrid,seedPosition,seedPosX,seedPosY,noOfSeeds )
+function [ seedPositionNew ] = nextSeedPosition( benefitGrid,seedPosition,seedPosX,seedPosY,noOfSeeds,threshold )
 %now find the possible locations for each seed to move so that the path is
 %most optimum and also consumes less energy.
 %first we will try to do using GB/dist and then later some advanced
@@ -51,7 +51,7 @@ end
 % GB2 = GBbyDist(:,:,2);
 % GB3 = GBbyDist(:,:,3);
 % GB4 = GBbyDist(:,:,4);
-threshold = 20;
+% threshold = 20;
 seedPositionNew = zeros(noOfSeeds,2);
 % seedPosNew = [];
 %now we have to find the next seed position with the help of our GbbyDist

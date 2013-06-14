@@ -1,6 +1,7 @@
-function [ output_args ] = main_V1( input_args )
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+function [  ] = main_V1( net,noOfnodes,noofSeeds,r,V_max,threshold,T)
+%This is the main function which takes the input value and runs the code
+
+
 
 
 end
